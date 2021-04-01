@@ -52,7 +52,7 @@ namespace RestApiSelami
             {
                 endpoints.MapControllers();
             });
-            app.UseCors( options =>options.WithOrigins("https://lieuxtoapi.herokuapp.com/").AllowAnyMethod());
+            app.UseCors( options =>options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             
         }
     }
