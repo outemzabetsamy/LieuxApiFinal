@@ -28,6 +28,7 @@ namespace RestApiSelami
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             services.AddControllers();
             services.AddDbContextPool<LieuxContext>(options => options.UseSqlServer(Configuration.GetConnectionString("LieuxContextConnectionString")));
             services.AddScoped<ILieuxData, SqlLieuxData>();
@@ -51,6 +52,8 @@ namespace RestApiSelami
             {
                 endpoints.MapControllers();
             });
+            app.UseCors( options =>options.WithOrigins("https://lieuxtoapi.herokuapp.com/").AllowAnyMethod());
+            
         }
     }
 }
